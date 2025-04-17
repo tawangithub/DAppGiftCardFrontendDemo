@@ -1,3 +1,5 @@
+Author: Tawan Achavanuntakul
+
 This is the frontend repository for the GiftCard dApp demo, which interacts with the smart contract found at
 https://github.com/tawangithub/DAppGiftCardContractDemo
 
