@@ -98,13 +98,11 @@ const GenerateVoucher = () => {
   };
 
   const activeFrom = new Date(
-    Number(cardDetail.startDate) * 1000
+    Number(cardDetail.startDate)
   ).toLocaleDateString();
   let activeTo;
   if ((cardDetail.expirationDate as any) > 0) {
-    activeTo = new Date(
-      Number(cardDetail.expirationDate) * 1000
-    ).toLocaleDateString();
+    activeTo = new Date(Number(cardDetail.expirationDate)).toLocaleDateString();
   } else {
     activeTo = "no expiration";
   }
