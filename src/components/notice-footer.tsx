@@ -17,7 +17,7 @@ const NoticeFooter = () => {
         }}
       >
         <Typography variant="body1">
-          Disclaimer: This is the mock app.
+          Disclaimer: This is the mock app only for demo purpose.
           {mockEthPriceInUSD && (
             <span>
               A MATIC price is mocked to ${mockEthPriceInUSD} to allow testing

@@ -34,23 +34,23 @@ export const useWalletHook = () => {
   const { cRead } = useReadContractHook();
   useEffect(() => {
     // Listen for account changes
-    window.ethereum.on("accountsChanged", function () {
+    window?.ethereum?.on("accountsChanged", function () {
       window.location.reload();
     });
 
     // Listen for chain changes
-    window.ethereum.on("chainChanged", function () {
+    window?.ethereum?.on("chainChanged", function () {
       window.location.reload();
     });
     return () => {
-      window.ethereum.removeListener("accountsChanged", function () {});
-      window.ethereum.removeListener("chainChanged", function () {});
+      window?.ethereum?.removeListener("accountsChanged", function () {});
+      window?.ethereum?.removeListener("chainChanged", function () {});
     };
   }, []);
 
   useEffect(() => {
-    if (userAddress && window.ethereum) {
-      setWeb3(new Web3(window.ethereum));
+    if (userAddress && window?.ethereum) {
+      setWeb3(new Web3(window?.ethereum));
     }
   }, [userAddress]);
 
