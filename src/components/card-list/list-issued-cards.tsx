@@ -68,11 +68,11 @@ const ListIssuedCards = (props: ListIssuedCardsProps) => {
                   <Image
                     src="/images/shop.webp"
                     alt="Buy cards from shop"
-                    width={100}
-                    height={100}
-                    className="hover:opacity-90 transition duration-300"
+                    width={50}
+                    height={50}
+                    className="hover:opacity-90 transition duration-300 md:w-[100px] md:h-[100px]"
                   />
-                  <div className="ml-3 text-center text-2xl">
+                  <div className="ml-3 text-center text-lg md:text-2xl">
                     Buy card from shop
                   </div>
                 </Button>

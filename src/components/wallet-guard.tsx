@@ -35,7 +35,7 @@ const WalletGuard = ({
           minHeight="60vh"
           gap={2}
         >
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom className="text-center px-10">
             {message}
           </Typography>
           <ConnectButton />

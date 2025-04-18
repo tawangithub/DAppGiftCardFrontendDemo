@@ -6,9 +6,15 @@ export default function Home() {
   return (
     <div>
       <Container className="mt-5 mb-10">
-        <Box textAlign="center" mt={10}>
-          <Typography variant="h3" gutterBottom>
-            Welcome to Our Mocked Gift Card Shop
+        <Box textAlign="center">
+          <Typography
+            mt={10}
+            variant="h3"
+            gutterBottom
+            component="h2"
+            className="hidden md:block"
+          >
+            Welcome to Mocked Gift Card Shop
           </Typography>
           <Typography variant="h5" gutterBottom>
             Are you a customer or a shop admin?

@@ -80,7 +80,7 @@ const BuyFromShop = () => {
 
   return (
     <Container className="mt-5 mb-10">
-      <div className="mt-5 mb-10 p-3 lg:text-4xl text-2xl bg-gradient-to-r from-pink-200 to-pink-400">
+      <div className="mt-5 mb-10 p-3 lg:text-4xl text-xl bg-gradient-to-r from-pink-200 to-pink-400">
         Buy Gift Cards from Official Shop
       </div>
       <ListCardFromShop

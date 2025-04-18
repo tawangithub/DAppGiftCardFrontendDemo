@@ -38,7 +38,7 @@ const CreateNewGiftCardType = (props: CreateNewGiftCardTypeProps) => {
     <Container className="mt-8 p-8 bg-gray-100 rounded-lg shadow-md">
       {isShowForm && (
         <Typography variant="h4" gutterBottom>
-          New Gift Card Type
+          <span className="text-xl md:text-3xl">New Gift Card Type</span>
         </Typography>
       )}
       {!isShowForm && (

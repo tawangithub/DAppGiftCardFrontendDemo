@@ -17,13 +17,15 @@ const NoticeFooter = () => {
         }}
       >
         <Typography variant="body1">
-          Disclaimer: This is the mock app only for demo purpose.
-          {mockEthPriceInUSD && (
-            <span>
-              A MATIC price is mocked to ${mockEthPriceInUSD} to allow testing
-              with a low wallet balance on testnet.
-            </span>
-          )}
+          <span className="text-sm md:text-lg">
+            Disclaimer: This is the mock app only for demo purpose.
+            {mockEthPriceInUSD && (
+              <span>
+                A MATIC price is mocked to ${mockEthPriceInUSD} to allow testing
+                with a low wallet balance on testnet.
+              </span>
+            )}
+          </span>
         </Typography>
       </Box>
     </>

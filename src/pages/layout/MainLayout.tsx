@@ -29,7 +29,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
 
   // Helper function to get the title based on the current route
   const getPageTitle = () => {
-    return "MOCKED G-SHOP";
+    return "MOCKED SHOP";
   };
 
   const isAdminPath = () => router.pathname.startsWith("/admin");
@@ -64,7 +64,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
       >
         <Toolbar className="flex">
           <Typography variant="h6" color="black" style={{ flexGrow: 1 }}>
-            <Link href="/" className="flex items-center space-x-2">
+            <Link href="/" className="flex items-center md:space-x-2 space-x-0">
               {/* <CardGiftcardIcon className="flex items-center mx-4 text-black" /> */}
               <Image
                 className="mx-3"
@@ -73,7 +73,7 @@ const MainLayout = ({ children }: MainLayoutProps) => {
                 width={48}
                 height={48}
               />
-              {getPageTitle()}{" "}
+              <span className="text-xs md:text-xl">{getPageTitle()}</span>
             </Link>
           </Typography>
           <div className="flex items-center space-x-4">

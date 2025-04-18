@@ -23,10 +23,12 @@ const AdminGuard = ({ children }: AdminGuardProps) => {
       {/* Admin check logic */}
       {!isConnected || !userAddress || isAdmin == undefined ? (
         <div className="flex flex-col items-center min-h-screen mt-20">
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="h6" gutterBottom className="text-center px-10">
             Please connect your wallet to continue
           </Typography>
-          <ConnectButton />
+          <div className="mt-2">
+            <ConnectButton />
+          </div>
         </div>
       ) : isAdmin == true ? (
         children

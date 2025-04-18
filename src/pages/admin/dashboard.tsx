@@ -8,7 +8,7 @@ const AdminDashboard = () => {
     <div>
       <Container className="mt-5 mb-10">
         <Box textAlign="center" mt={10}>
-          <Typography variant="h3" gutterBottom>
+          <Typography variant="h3" gutterBottom className="hidden md:block">
             Welcome to the Admin Dashboard
           </Typography>
           <Typography variant="h5" gutterBottom>
@@ -17,7 +17,7 @@ const AdminDashboard = () => {
           <Box mt={5} className="flex flex-col gap-4">
             <Link href="/admin/card-type">
               <Button
-                className="w-1/2"
+                className="w-full md:w-1/2"
                 variant="contained"
                 color="primary"
                 size="large"
@@ -27,7 +27,7 @@ const AdminDashboard = () => {
             </Link>
             <Link href="/admin/redeem-voucher">
               <Button
-                className="w-1/2"
+                className="w-full md:w-1/2"
                 variant="contained"
                 color="secondary"
                 size="large"
@@ -37,7 +37,7 @@ const AdminDashboard = () => {
             </Link>
             <Link href="/admin/withdraw">
               <Button
-                className="w-1/2"
+                className="w-full md:w-1/2"
                 variant="contained"
                 color="error"
                 size="large"
