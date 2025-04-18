@@ -1,6 +1,7 @@
-import { getDefaultConfig } from "@rainbow-me/rainbowkit";
+import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 import { hardhat, polygonAmoy, sepolia } from "viem/chains";
-import { http } from "wagmi";
+import { createConfig, http } from "wagmi";
+import { metaMaskWallet, rainbowWallet } from "@rainbow-me/rainbowkit/wallets";
 
 const targetChain = process.env.NEXT_PUBLIC_TARGET_CHAIN || "hardhat";
 const chains: any = [];
@@ -18,10 +19,22 @@ if (targetChain === "hardhat") {
   transports[sepolia.id] = http(process.env.NEXT_PUBLIC_SEPOLIA_RPC || "");
 }
 
-export const rainbowKitConfig = getDefaultConfig({
-  appName: "DApp GiftCard Demo",
-  projectId:
-    process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "YOUR_PROJECT_ID",
+const connectors = connectorsForWallets(
+  [
+    {
+      groupName: "Recommended",
+      wallets: [metaMaskWallet, rainbowWallet],
+    },
+  ],
+  {
+    appName: "DApp GiftCard Demo",
+    projectId:
+      process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID || "DEFAULT PROJECT ID",
+  }
+);
+
+export const rainbowKitConfig = createConfig({
   chains: chains,
   transports: transports,
+  connectors,
 });
