@@ -13,6 +13,7 @@ import {
   readContract,
   simulateContract,
   waitForTransactionReceipt,
+  watchAccount,
 } from "@wagmi/core";
 
 import { rainbowKitConfig } from "../../wagmi.config";
@@ -35,19 +36,17 @@ export const useWalletHook = () => {
   const { cWrite } = useWriteContractHook();
   const { cRead } = useReadContractHook();
   useEffect(() => {
-    // Listen for account changes
-    window?.ethereum?.on("accountsChanged", function () {
-      window.location.reload();
+    const unsubscribe = watchAccount(rainbowKitConfig, {
+      onChange: (account, prevAccount) => {
+        if (prevAccount.isConnected && !account.isConnected) {
+          console.log("Disconnected");
+          window.location.reload();
+        } else {
+          console.log("Account changed:", account.address);
+        }
+      },
     });
-
-    // Listen for chain changes
-    window?.ethereum?.on("chainChanged", function () {
-      window.location.reload();
-    });
-    return () => {
-      window?.ethereum?.removeListener("accountsChanged", function () {});
-      window?.ethereum?.removeListener("chainChanged", function () {});
-    };
+    return () => unsubscribe();
   }, []);
 
   useEffect(() => {
