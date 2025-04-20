@@ -1,7 +1,11 @@
 import { connectorsForWallets } from "@rainbow-me/rainbowkit";
 import { hardhat, polygonAmoy, sepolia } from "viem/chains";
 import { createConfig, http } from "wagmi";
-import { metaMaskWallet, rainbowWallet } from "@rainbow-me/rainbowkit/wallets";
+import {
+  metaMaskWallet,
+  rainbowWallet,
+  walletConnectWallet,
+} from "@rainbow-me/rainbowkit/wallets";
 
 const targetChain = process.env.NEXT_PUBLIC_TARGET_CHAIN || "hardhat";
 const chains: any = [];
@@ -18,12 +22,21 @@ if (targetChain === "hardhat") {
   chains.push(sepolia);
   transports[sepolia.id] = http(process.env.NEXT_PUBLIC_SEPOLIA_RPC || "");
 }
+import { isMobile, isTablet } from "react-device-detect";
+
+const isMobileDevice = isMobile || isTablet;
+const wallets: any[] = [];
+if (isMobileDevice) {
+  wallets.push(walletConnectWallet);
+} else {
+  wallets.push(metaMaskWallet, rainbowWallet);
+}
 
 const connectors = connectorsForWallets(
   [
     {
       groupName: "Recommended",
-      wallets: [metaMaskWallet, rainbowWallet],
+      wallets,
     },
   ],
   {

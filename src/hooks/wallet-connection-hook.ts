@@ -5,6 +5,7 @@ import {
   BaseError,
   useAccount,
   useWaitForTransactionReceipt,
+  useWalletClient,
   useWriteContract,
 } from "wagmi";
 
@@ -30,6 +31,7 @@ export type cReadFunction = (functionName: string, args: any[]) => Promise<any>;
 export const useWalletHook = () => {
   const [web3, setWeb3] = useState<Web3 | null>(null);
   const { address: userAddress, isConnected } = useAccount();
+  const { data: walletClient } = useWalletClient();
   const { cWrite } = useWriteContractHook();
   const { cRead } = useReadContractHook();
   useEffect(() => {
@@ -49,10 +51,14 @@ export const useWalletHook = () => {
   }, []);
 
   useEffect(() => {
-    if (userAddress && window?.ethereum) {
-      setWeb3(new Web3(window?.ethereum));
-    }
-  }, [userAddress]);
+    const initializeWeb3 = async () => {
+      if (userAddress && walletClient) {
+        setWeb3(new Web3(walletClient.transport));
+      }
+    };
+
+    initializeWeb3();
+  }, [userAddress, walletClient]);
 
   return {
     userAddress: userAddress as string,
