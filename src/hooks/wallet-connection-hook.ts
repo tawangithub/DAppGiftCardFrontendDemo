@@ -40,6 +40,7 @@ export const useWalletHook = () => {
       onChange: (account, prevAccount) => {
         if (prevAccount.isConnected && !account.isConnected) {
           console.log("Disconnected");
+          window.localStorage.clear();
           window.location.reload();
         } else {
           console.log("Account changed:", account.address);
