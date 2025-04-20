@@ -29,7 +29,7 @@ const wallets: any[] = [];
 if (isMobileDevice) {
   wallets.push(walletConnectWallet);
 } else {
-  wallets.push(metaMaskWallet, rainbowWallet);
+  wallets.push(metaMaskWallet, rainbowWallet, walletConnectWallet);
 }
 
 const connectors = connectorsForWallets(
