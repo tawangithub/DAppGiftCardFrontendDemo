@@ -35,6 +35,7 @@ export const useWalletHook = () => {
   const { data: walletClient } = useWalletClient();
   const { cWrite } = useWriteContractHook();
   const { cRead } = useReadContractHook();
+  const { chain } = useAccount();
   useEffect(() => {
     const unsubscribe = watchAccount(rainbowKitConfig, {
       onChange: (account, prevAccount) => {
@@ -66,6 +67,7 @@ export const useWalletHook = () => {
     web3,
     cWrite,
     cRead,
+    currentChain: chain,
   };
 };
 

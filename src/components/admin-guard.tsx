@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useWalletConnection } from "@/contexts/walletConnectContext";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Typography } from "@mui/material";
+import { targetChainId } from "../../wagmi.config";
 
 interface AdminGuardProps {
   children: React.ReactNode;
@@ -9,7 +10,10 @@ interface AdminGuardProps {
 
 const AdminGuard = ({ children }: AdminGuardProps) => {
   const [isAdmin, setIsAdmin] = useState<boolean | undefined>(undefined);
-  const { userAddress, isConnected, cRead } = useWalletConnection();
+  const { userAddress, isConnected, cRead, currentChain } =
+    useWalletConnection();
+  const wrongChain = currentChain?.id !== targetChainId;
+
   useEffect(() => {
     if (userAddress && isConnected) {
       cRead("isAdmin", []).then((res: any) => {
@@ -21,7 +25,7 @@ const AdminGuard = ({ children }: AdminGuardProps) => {
   return (
     <>
       {/* Admin check logic */}
-      {!isConnected || !userAddress || isAdmin == undefined ? (
+      {!isConnected || !userAddress || isAdmin == undefined || wrongChain ? (
         <div className="flex flex-col items-center min-h-screen mt-20">
           <Typography variant="h6" gutterBottom className="text-center px-10">
             Please connect your wallet to continue

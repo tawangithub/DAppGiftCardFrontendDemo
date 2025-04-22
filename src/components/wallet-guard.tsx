@@ -2,6 +2,7 @@ import { ReactNode, useEffect, useState } from "react";
 import { Container, Typography, Box } from "@mui/material";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useWalletConnection } from "@/contexts/walletConnectContext";
+import { targetChainId } from "../../wagmi.config";
 
 interface WalletGuardProps {
   children: ReactNode;
@@ -12,7 +13,7 @@ const WalletGuard = ({
   children,
   message = "Please connect your wallet to continue",
 }: WalletGuardProps) => {
-  const { userAddress, isConnected } = useWalletConnection();
+  const { userAddress, isConnected, currentChain } = useWalletConnection();
   const [ready, isReady] = useState<boolean>(false);
 
   // need this useEffect to prevent dehydration error
@@ -24,7 +25,9 @@ const WalletGuard = ({
     }
   }, [userAddress, isConnected]);
 
-  if (!ready) {
+  const wrongChain = currentChain?.id !== targetChainId;
+
+  if (!ready || wrongChain) {
     return (
       <Container>
         <Box

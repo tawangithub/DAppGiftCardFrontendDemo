@@ -2,6 +2,7 @@ import { createContext, useContext, ReactNode } from "react";
 import { useWalletHook } from "@/hooks/wallet-connection-hook";
 import Web3 from "web3";
 import { cWriteFunction, cReadFunction } from "@/hooks/wallet-connection-hook";
+import { Chain } from "wagmi/chains";
 
 interface WalletConnectionContextType {
   userAddress: string;
@@ -9,6 +10,7 @@ interface WalletConnectionContextType {
   web3: Web3 | null;
   cWrite: cWriteFunction;
   cRead: cReadFunction;
+  currentChain: Chain | undefined;
 }
 
 const WalletConnectionContext = createContext<
